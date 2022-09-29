@@ -1,4 +1,4 @@
-# IBM Business Automation - Decision Manager Open Edition - Quick Start
+# IBM Digital Business Automation - Decision Manager Open Edition - Quick Start
 
 This repository contains various tools, scripts, and product extensions useful for managing `IBM Decision Manager Open Edition` projects.
 
