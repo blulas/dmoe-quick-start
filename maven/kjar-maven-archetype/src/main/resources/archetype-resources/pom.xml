@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- KJAR -->
+	<groupId>${groupId}</groupId>
+	<artifactId>${artifactId}</artifactId>
+	<version>${version}</version>
+	<packaging>${packaging}</packaging>
+	<name>${projectName}</name>
+	<description>${projectDescription}</description>
+
+	<!-- Project Properties -->
+	<properties>
+		<!-- General Properties -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+		<!-- Java Properties -->
+		<java.version>${javaVersion}</java.version>
+
+		<!-- Common Maven Plugins -->
+		<maven.compiler.source>${java.version}</maven.compiler.source>
+		<maven.compiler.target>${java.version}</maven.compiler.target>
+		<maven-compiler-plugin.version>${mavenCompilerPluginVersion}</maven-compiler-plugin.version>
+		<maven-resources-plugin.version>${mavenResourcesPluginVersion}</maven-resources-plugin.version>
+		<maven-shade-plugin.version>${mavenShadePluginVersion}</maven-shade-plugin.version>
+		<maven-surefire-plugin.version>${mavenSurefirePluginVersion}</maven-surefire-plugin.version>
+
+		<!-- Red Hat Business Automation -->
+		<!-- Dependency Mapping Found at: https://access.redhat.com/solutions/3405361 -->
+		<rhba.platform.bom.version>${rhbaPlatformBomVersion}</rhba.platform.bom.version>
+		<kie-maven-plugin.version>${kieMavenPluginVersion}</kie-maven-plugin.version>
+
+		<!-- Testing Properties -->
+		<junit.version>${junitVersion}</junit.version>
+		<skipTests>${skipTests}</skipTests>
+
+		<!-- Logging Dependencies -->
+		<slf4j.version>${slf4jVersion}</slf4j.version>
+		<logback.version>${logbackVersion}</logback.version>
+
+		<!-- KJAR Configuration Options -->
+		<kjar-config-validateDMN>${kjarConfigValidateDMN}</kjar-config-validateDMN>
+	</properties>
+
+	<!-- Enterprise Artifact Repository -->
+	<distributionManagement>
+	</distributionManagement>
+
+	<!-- Dependency Management -->
+	<dependencyManagement>
+		<dependencies>
+			<!-- RedHat Business Automation Dependencies -->
+			<dependency>
+				<groupId>com.redhat.ba</groupId>
+				<artifactId>ba-platform-bom</artifactId>
+				<version>${rhba.platform.bom.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<!-- Project Dependencies -->
+	<dependencies>
+		<!-- Logging Dependencies -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
+			<version>${logback.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback.version}</version>
+		</dependency>
+
+		<!-- Business Automation Depencencies -->
+		<dependency>
+			<groupId>org.kie</groupId>
+			<artifactId>kie-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.kie.server</groupId>
+			<artifactId>kie-server-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.kie</groupId>
+			<artifactId>kie-internal</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jbpm</groupId>
+			<artifactId>jbpm-bpmn2</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-core</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-engine</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+#if (${useCompiledRules} == 'true')
+		<!-- Start of Compiled Rule Dependencies -->
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-compiler</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-model-compiler</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-canonical-model</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<!-- End of Compiled Rule Dependencies -->
+
+#end
+#if (${useDMN} == 'true')
+		<!-- Start of DMN Dependencies -->
+		<dependency>
+			<groupId>org.kie</groupId>
+			<artifactId>kie-dmn-feel</artifactId>
+			<scope>provided</scope>
+		</dependency>
+	
+		<dependency>
+			<groupId>org.kie</groupId>
+			<artifactId>kie-dmn-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.kie</groupId>
+			<artifactId>kie-dmn-core</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<!-- End of DMN Dependencies -->
+
+#end
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-workbench-models-guided-dtable</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Testing Depencencies -->
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-scenario-simulation-api</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-scenario-simulation-backend</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<!-- Build Targets and Plugins -->
+	<build>
+		<defaultGoal>install</defaultGoal>
+		<plugins>
+
+			<!-- This plugin creates the KJAR -->
+			<plugin>
+				<groupId>org.kie</groupId>
+				<artifactId>kie-maven-plugin</artifactId>
+				<version>${kie-maven-plugin.version}</version>
+				<extensions>true</extensions>
+				<configuration>
+					<validateDMN>${kjar-config-validateDMN}</validateDMN>
+				</configuration>
+			</plugin>
+
+			<!-- This plugin compiles Java code -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler-plugin.version}</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+
+			<!--  This plugin handles the copying of project resources to the output directory -->
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>${maven-resources-plugin.version}</version>
+				<executions>
+					<execution>
+						<id>default-testResources</id>
+						<phase>test-compile</phase>
+						<goals>
+							<goal>testResources</goal>
+						</goals>
+						<configuration>
+							<resources>
+								<resource>
+									<directory>src/test/resources</directory>
+									<excludes>
+										<exclude>**/*.*.scesim</exclude>
+									</excludes>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- This plugin is used during the test phase of the build lifecycle to execute the unit tests of an application and generate reports -->
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${maven-surefire-plugin.version}</version>
+				<configuration>
+					<systemPropertyVariables>
+						<maven.home>${maven.home}</maven.home>
+					</systemPropertyVariables>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

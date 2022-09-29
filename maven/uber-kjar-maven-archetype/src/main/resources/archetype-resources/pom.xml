@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+
+#if (${useParent} == 'true')
+	<!-- Parent POM -->
+	<parent>
+		<groupId>${parentGroupId}</groupId>
+		<artifactId>${parentArtifactId}</artifactId>
+		<version>${parentVersion}</version>
+	</parent>
+
+	<!-- Project Information -->
+	<groupId>${groupId}</groupId>
+	<artifactId>${artifactId}</artifactId>
+	<version>${version}</version>
+	<packaging>${packaging}</packaging>
+	<name>${projectName}</name>
+	<description>${projectDescription}</description>
+
+	<!-- Project Properties (include all bill-of-material versions) -->
+	<properties>
+		<!-- Maven Shade Dependencies -->
+		<maven-jar-plugin.version>${mavenJarPluginVersion}</maven-jar-plugin.version>
+		<maven-shade-plugin.version>${mavenShadePluginVersion}</maven-shade-plugin.version>
+	</properties>
+
+	<!-- Project Dependency Management -->
+	<dependencyManagement>
+		<dependencies>
+		</dependencies>
+	</dependencyManagement>
+
+	<!-- Project Dependencies -->
+	<dependencies>
+		<dependency>
+			<groupId>org.kie</groupId>
+			<artifactId>kie-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.kie</groupId>
+			<artifactId>kie-internal</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.kie</groupId>
+			<artifactId>kie-ci</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jbpm</groupId>
+			<artifactId>jbpm-bpmn2</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-core</artifactId>
+			<scope>provided</scope>
+		</dependency>
+  
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-compiler</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-model-compiler</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		
+#if (${usesDMN} == 'true')
+		<dependency>
+			<groupId>org.kie</groupId>
+			<artifactId>kie-dmn-feel</artifactId>
+			<scope>provided</scope>
+		</dependency>
+	
+		<dependency>
+			<groupId>org.kie</groupId>
+			<artifactId>kie-dmn-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.kie</groupId>
+			<artifactId>kie-dmn-core</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+#end
+		<!-- Testing Depencencies -->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>${junit.jupiter.version}</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>${junit.jupiter.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-params</artifactId>
+			<version>${junit.jupiter.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.junit.vintage</groupId>
+			<artifactId>junit-vintage-engine</artifactId>
+			<version>${junit.vintage-engine.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>${cucumber.version}</version>
+			<scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>${cucumber.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-picocontainer</artifactId>
+            <version>${cucumber.version}</version>
+			<scope>test</scope>
+        </dependency>
+
+#if (${usesDMN} == 'true')
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-scenario-simulation-api</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-scenario-simulation-backend</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+#end
+		<!-- Logging Dependencies -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+		</dependency>
+
+		<!-- Project (KJAR) Dependencies -->
+
+		<!-- Project (JAR) Dependencies -->
+	</dependencies>
+
+	<!-- Project Build -->
+    <build>    
+		<plugins>
+			<plugin>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>${maven-jar-plugin.version}</version>
+			</plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>${maven-shade-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <minimizeJar>true</minimizeJar>
+                            <artifactSet>
+                                <excludes>
+                                    <exclude>junit:junit:jar:</exclude>
+                                </excludes>
+                            </artifactSet>
+
+                            <transformers>
+								<!-- These files are included in the uber-kjar -->
+								<transformer implementation="org.apache.maven.plugins.shade.resource.IncludeResourceTransformer">
+									<resource>META-INF/kmodule.xml</resource>
+									<resource>META-INF/kie-deployment-descriptor.xml</resource>
+									<resource>META-INF/persistence.xml</resource>
+                				</transformer>
+					        </transformers>
+                        </configuration>
+                    </execution>
+                </executions>
+		    </plugin>
+		</plugins>
+    </build>    
+</project>
+#else
+	<!-- Project Information -->
+	<groupId>${groupId}</groupId>
+	<artifactId>${artifactId}</artifactId>
+	<version>${version}</version>
+	<packaging>${packaging}</packaging>
+	<name>${projectName}</name>
+	<description>${projectDescription}</description>
+
+	<!-- Project Properties -->
+	<properties>
+		<!-- General Properties -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+		<!-- Java Properties -->
+		<java.version>${javaVersion}</java.version>
+
+		<!-- Common Maven Plugins -->
+		<maven-compiler-plugin.version>${mavenCompilerPluginVersion}</maven-compiler-plugin.version>
+		<lifecycle-mapping-version>${lifecycleMappingVersion}</lifecycle-mapping-version>
+
+		<!-- Red Hat Business Automation -->
+		<!-- Dependency Mapping Found at: https://access.redhat.com/solutions/3405361 -->
+		<rhba.platform.bom.version>${rhbaPlatformBomVersion}</rhba.platform.bom.version>
+		<kie-maven-plugin.version>${kieMavenPluginVersion}</kie-maven-plugin.version>
+
+		<!-- Testing Properties -->
+		<maven-surefire-plugin.version>${mavenSurefirePluginVersion}</maven-surefire-plugin.version>
+		<skipTests>${skipTests}</skipTests>
+
+		<!-- Universal Dependencies -->
+		<slf4j.version>${slf4jVersion}</slf4j.version>
+		<junit.version>${junitVersion}</junit.version>
+		<junit.jupiter.version>${junitJupiterVersion}</junit.jupiter.version>
+		<junit.vintage-engine.version>${junitVintageEngineVersion}</junit.vintage-engine.version>
+        <cucumber.version>${cucumber.version}</cucumber.version>
+
+		<!-- Maven Shade Dependencies -->
+		<maven-jar-plugin.version>${mavenJarPluginVersion}</maven-jar-plugin.version>
+		<maven-shade-plugin.version>${mavenShadePluginVersion}</maven-shade-plugin.version>
+
+		<!-- Project Properties (include all bill-of-material versions) -->
+	</properties>
+
+	<!-- Dependency Management -->
+	<dependencyManagement>
+		<dependencies>
+			<!-- RedHat Business Automation Dependencies -->
+			<dependency>
+				<groupId>com.redhat.ba</groupId>
+				<artifactId>ba-platform-bom</artifactId>
+				<version>${rhba.platform.bom.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<!-- Logging -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${slf4j.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-simple</artifactId>
+				<version>${slf4j.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<!-- Project Dependencies -->
+		</dependencies>
+	</dependencyManagement>
+
+	<!-- Dependencies -->
+	<dependencies>
+		<dependency>
+			<groupId>org.kie</groupId>
+			<artifactId>kie-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.kie</groupId>
+			<artifactId>kie-internal</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.kie</groupId>
+			<artifactId>kie-ci</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jbpm</groupId>
+			<artifactId>jbpm-bpmn2</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-core</artifactId>
+			<scope>provided</scope>
+		</dependency>
+  
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-compiler</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-model-compiler</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		
+#if (${usesDMN} == 'true')
+		<dependency>
+			<groupId>org.kie</groupId>
+			<artifactId>kie-dmn-feel</artifactId>
+			<scope>provided</scope>
+		</dependency>
+	
+		<dependency>
+			<groupId>org.kie</groupId>
+			<artifactId>kie-dmn-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.kie</groupId>
+			<artifactId>kie-dmn-core</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+#end
+		<!-- Testing Depencencies -->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>${junit.jupiter.version}</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>${junit.jupiter.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-params</artifactId>
+			<version>${junit.jupiter.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.junit.vintage</groupId>
+			<artifactId>junit-vintage-engine</artifactId>
+			<version>${junit.vintage-engine.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>${cucumber.version}</version>
+			<scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>${cucumber.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-picocontainer</artifactId>
+            <version>${cucumber.version}</version>
+			<scope>test</scope>
+        </dependency>
+
+#if (${usesDMN} == 'true')
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-scenario-simulation-api</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-scenario-simulation-backend</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+#end
+		<!-- Logging Dependencies -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+		</dependency>
+
+		<!-- Project Dependencies -->
+	</dependencies>
+
+	<!-- Project Build -->
+    <build>    
+		<plugins>
+			<plugin>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>${maven-jar-plugin.version}</version>
+			</plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>${maven-shade-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <minimizeJar>true</minimizeJar>
+                            <artifactSet>
+                                <excludes>
+                                    <exclude>junit:junit:jar:</exclude>
+                                </excludes>
+                            </artifactSet>
+
+                            <transformers>
+								<!-- These files are included in the uber-kjar -->
+								<transformer implementation="org.apache.maven.plugins.shade.resource.IncludeResourceTransformer">
+									<resource>META-INF/kmodule.xml</resource>
+									<resource>META-INF/kie-deployment-descriptor.xml</resource>
+									<resource>META-INF/persistence.xml</resource>
+                				</transformer>
+					        </transformers>
+                        </configuration>
+                    </execution>
+                </executions>
+		    </plugin>
+		</plugins>
+    </build>    
+</project>
+#end

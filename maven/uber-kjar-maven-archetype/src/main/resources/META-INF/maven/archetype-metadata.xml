@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archetype-descriptor xsi:schemaLocation="https://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.1.0 http://maven.apache.org/xsd/archetype-descriptor-1.1.0.xsd" name="barry-project-1" xmlns="https://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  	<fileSets>
+
+		<!-- This is the root folder for the project -->
+		<fileSet filtered="true" packaged="false" encoding="UTF-8">
+			<directory></directory>
+			<includes>
+				<include>readme.md</include>
+				<include>pom.xml</include>
+			</includes>
+		</fileSet>
+
+		<fileSet filtered="false" packaged="false" encoding="UTF-8">
+			<directory>./</directory>
+			<includes>
+				<include>.gitignore</include>
+			</includes>
+		</fileSet>
+
+		<!-- This folder contains the Java source files for the project -->
+		<fileSet filtered="true" packaged="false" encoding="UTF-8">
+			<directory>src/main/java</directory>
+			<includes>
+				<include>**/*.java</include>
+				<include>.gitkeep</include>
+			</includes>
+		</fileSet>
+
+		<!-- This folder contains the resource files for the project -->
+		<fileSet filtered="true" packaged="false" encoding="UTF-8">
+			<directory>src/main/resources</directory>
+			<includes>
+				<include>**/*.properties</include>
+				<include>**/*.bpmn</include>
+				<include>**/*.bpmn2</include>
+				<include>**/*.drl</include>
+				<include>**/*.dmn</include>
+				<include>**/*.scesim</include>
+				<include>**/*.xml</include>
+				<include>.gitkeep</include>
+			</includes>
+		</fileSet>
+
+		<fileSet filtered="true" packaged="false" encoding="UTF-8">
+			<directory>src/main/resources/processes</directory>
+			<includes>
+				<include>**/*.properties</include>
+				<include>**/*.bpmn</include>
+				<include>**/*.bpmn2</include>
+				<include>**/*.xml</include>
+				<include>.gitkeep</include>
+			</includes>
+		</fileSet>
+
+		<fileSet filtered="true" packaged="false" encoding="UTF-8">
+			<directory>src/main/resources/rules</directory>
+			<includes>
+				<include>**/*.properties</include>
+				<include>**/*.drl</include>
+				<include>**/*.dmn</include>
+				<include>**/*.xml</include>
+				<include>.gitkeep</include>
+			</includes>
+		</fileSet>
+
+		<!-- This folder contains the Java test ource files for the project -->
+		<fileSet filtered="true" packaged="false" encoding="UTF-8">
+			<directory>src/test/java</directory>
+			<includes>
+				<include>**/*.java</include>
+				<include>.gitkeep</include>
+			</includes>
+		</fileSet>
+
+		<!-- This folder contains the test resource files for the project -->
+		<fileSet filtered="true" packaged="false" encoding="UTF-8">
+			<directory>src/test/resources</directory>
+			<includes>
+				<include>**/*.properties</include>
+				<include>**/*.xml</include>
+				<include>.gitkeep</include>
+			</includes>
+		</fileSet>
+  	</fileSets>
+
+	<!-- These properties are required -->
+	<requiredProperties>
+		<requiredProperty key="projectName">
+			<defaultValue>untitled</defaultValue>
+		</requiredProperty>
+
+		<requiredProperty key="projectDescription">
+			<defaultValue>UBER KJAR Project</defaultValue>
+		</requiredProperty>
+
+		<requiredProperty key="groupId">
+			<defaultValue>com.redhat.consulting.ba</defaultValue>
+		</requiredProperty>
+
+		<requiredProperty key="artifactId">
+			<defaultValue>untitled</defaultValue>
+		</requiredProperty>
+
+		<requiredProperty key="version">
+			<defaultValue>1.0.0</defaultValue>
+		</requiredProperty>
+
+		<requiredProperty key="packaging">
+			<defaultValue>jar</defaultValue>
+		</requiredProperty>
+
+		<requiredProperty key="useParent">
+			<defaultValue>false</defaultValue>
+		</requiredProperty>
+
+		<requiredProperty key="usesDMN">
+			<defaultValue>false</defaultValue>
+		</requiredProperty>
+
+		<requiredProperty key="parentGroupId">
+			<defaultValue>com.redhat.consulting.ba</defaultValue>
+		</requiredProperty>
+
+		<requiredProperty key="parentArtifactId">
+			<defaultValue>ba-platform-parent</defaultValue>
+		</requiredProperty>
+
+		<requiredProperty key="parentVersion">
+			<defaultValue>1.0.0</defaultValue>
+		</requiredProperty>
+
+		<requiredProperty key="skipTests">
+			<defaultValue>false</defaultValue>
+		</requiredProperty>
+
+		<!-- Product Properties: Dependency Mapping Found at: https://access.redhat.com/solutions/3405361 -->
+		<requiredProperty key="rhbaPlatformBomVersion">
+			<defaultValue>7.11.0.redhat-00005</defaultValue>
+		</requiredProperty>
+
+		<requiredProperty key="kieMavenPluginVersion">
+			<defaultValue>7.52.0.Final-redhat-00007</defaultValue>
+		</requiredProperty>
+
+		<requiredProperty key="mavenSurefirePluginVersion">
+			<defaultValue>2.22.2</defaultValue>
+		</requiredProperty>
+
+		<requiredProperty key="slf4jVersion">
+			<defaultValue>1.7.5</defaultValue>
+		</requiredProperty>
+
+		<requiredProperty key="junitVersion">
+			<defaultValue>4.13.2</defaultValue>
+		</requiredProperty>
+
+		<requiredProperty key="junitJupiterVersion">
+			<defaultValue>5.8.0-M1</defaultValue>
+		</requiredProperty>
+
+		<requiredProperty key="junitVintageEngineVersion">
+			<defaultValue>5.8.0-M1</defaultValue>
+		</requiredProperty>
+
+		<requiredProperty key="javaVersion">
+			<defaultValue>11</defaultValue>
+		</requiredProperty>
+
+		<requiredProperty key="mavenCompilerPluginVersion">
+			<defaultValue>3.8.1</defaultValue>
+		</requiredProperty>
+
+		<requiredProperty key="lifecycleMappingVersion">
+			<defaultValue>1.0.0</defaultValue>
+		</requiredProperty>
+
+		<requiredProperty key="cucumberVersion">
+			<defaultValue>6.8.1</defaultValue>
+		</requiredProperty>
+		
+		<!-- KIE Properties -->
+		<requiredProperty key="kieAuditMode">
+			<defaultValue>JPA</defaultValue>
+		</requiredProperty>
+
+		<requiredProperty key="kiePersistenceMode">
+			<defaultValue>JPA</defaultValue>
+		</requiredProperty>
+
+		<requiredProperty key="kiePersistenceUnit">
+			<defaultValue>org.jbpm.domain</defaultValue>
+		</requiredProperty>
+
+		<requiredProperty key="kieAuditPersistenceUnit">
+			<defaultValue>org.jbpm.domain</defaultValue>
+		</requiredProperty>
+
+		<requiredProperty key="kieRuntimeStrategy">
+			<defaultValue>PER_PROCESS_INSTANCE</defaultValue>
+		</requiredProperty>
+
+		<requiredProperty key="kieCustomTeamRole">
+			<defaultValue>customTeamRole</defaultValue>
+		</requiredProperty>
+
+		<requiredProperty key="kieSecureREST">
+			<defaultValue>false</defaultValue>
+		</requiredProperty>
+
+		<requiredProperty key="kieLimitSerializationClasses">
+			<defaultValue>true</defaultValue>
+		</requiredProperty>
+
+		<requiredProperty key="usesCustomMarshalling">
+			<defaultValue>false</defaultValue>
+		</requiredProperty>
+
+		<!-- Maven Shade Plugin -->
+		<requiredProperty key="mavenJarPluginVersion">
+			<defaultValue>3.1.0</defaultValue>
+		</requiredProperty>
+
+		<requiredProperty key="mavenShadePluginVersion">
+			<defaultValue>3.2.1</defaultValue>
+		</requiredProperty>
+
+		<!-- Customer Extended Properties -->
+		<requiredProperty key="usesPlatformCommons">
+			<defaultValue>true</defaultValue>
+		</requiredProperty>
+
+		<requiredProperty key="usesProviderDemographicsCommons">
+			<defaultValue>true</defaultValue>
+		</requiredProperty>
+	</requiredProperties>
+</archetype-descriptor>
