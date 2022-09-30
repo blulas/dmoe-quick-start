@@ -11,7 +11,7 @@ This repository is built using `mvn clean install` by either the CI/CD pipeline 
 This repository is organized in a series of modules:  
 
 1.  [**Adaptors**](./adaptors/readme.md) - A set of legacy adaptors and product extensions used to augment the functionality of the legacy aspects of IBM Decision Manager Open Edition.  
-2.  [**Maven**](./maven.readme.md) - A set of Maven extensions, such as custom archetypes and plugins, used to augment the functionality of IBM Decision Manager Open Edition.
+2.  [**Maven**](./maven/readme.md) - A set of Maven extensions, such as custom archetypes and plugins, used to augment the functionality of IBM Decision Manager Open Edition.
 3.  [**Scripts**](./scripts/readme.md) - A set of scripts useful for using various adaptors and maven extensions.
 
 ## Additional Information (*Appendicies*)
