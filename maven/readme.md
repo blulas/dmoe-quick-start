@@ -12,7 +12,7 @@ This repository is organized in a series of modules:
 
 1.  [**Decision Service Maven Archetype**](./ds-maven-archetype/readme.md) - A Maven archetype used to generate a Kogito based decision service project.
 2.  [**KJAR Service Maven Archetype**](./kjar-maven-archetype/readme.md) - A Maven archetype used to generate a KIE Server Knowledge Jar (KJAR) project.
-3.  [**UBER KJAR Service Maven Archetype**](./uber-kjar-maven-archetype/readme.md) - A Maven archetype used to generate a KIE Server Knowledge Jar (KJAR) project that contains other KJAR projects.  This approach is primarily used when you have multiple KJAR's that you'd like to combine together to save resource space in the KIE Server.
+3.  [**UBER KJAR Maven Archetype**](./uber-kjar-maven-archetype/readme.md) - A Maven archetype used to generate a KIE Server Knowledge Jar (KJAR) project that contains other KJAR projects.  This approach is primarily used when you have multiple KJAR's that you'd like to combine together to save resource space in the KIE Server.
 
 ## Additional Information (*Appendicies*)
 This repository is focused on business automation using the **IBM Decison Manager Open Edition** product, which in turn relies on various open source tools and technology. The following online documentation is available in order to learn various aspects of these tools:

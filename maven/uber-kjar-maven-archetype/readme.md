@@ -43,8 +43,8 @@ The command above represents the minimal set of properties for the archetype. Th
 | archetypeArtifactId | String | Artifact ID for the archetype | None | Yes |
 | archetypeVersion | String | Version number for the archetype | None | Yes |
 | projectName | String | Project name (becomes KJAR name) | untitled | No |
-| projectDescription | String | Project description | KJAR Project | No |
-| groupId | String | Maven groupId for generated project | ccom.ibm.dba.dmoe | No |
+| projectDescription | String | Project description | UBER KJAR Project | No |
+| groupId | String | Maven groupId for generated project | com.ibm.dba.dmoe | No |
 | artifactId | String | Maven artifactId for generated project | untitled | No |
 | version | String | Maven version for generated project | 1.0.0-SNAPSHOT | No |
 | packaging | String | Maven build package target | KJAR | No |
