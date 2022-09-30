@@ -1,20 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <archetype-descriptor xsi:schemaLocation="https://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.1.0 http://maven.apache.org/xsd/archetype-descriptor-1.1.0.xsd" name="barry-project-1" xmlns="https://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   	<fileSets>
-
 		<!-- This is the root folder for the project -->
 		<fileSet filtered="true" packaged="false" encoding="UTF-8">
 			<directory></directory>
 			<includes>
+				<include>.gitignore</include>
 				<include>readme.md</include>
 				<include>pom.xml</include>
 			</includes>
 		</fileSet>
 
-		<fileSet filtered="false" packaged="false" encoding="UTF-8">
+		<!-- Add the .gitignore file -->
+		<fileSet filtered="true" packaged="false" encoding="UTF-8">
 			<directory>./</directory>
 			<includes>
 				<include>.gitignore</include>
+			</includes>
+		</fileSet>
+
+		<!-- This folder contains the global files for the project -->
+		<fileSet filtered="true" packaged="false" encoding="UTF-8">
+			<directory>global</directory>
+			<includes>
+				<include>**/*.json</include>
+				<include>**/*.png</include>
+				<include>**/*.gif</include>
+				<include>**/*.wid</include>
+				<include>**/*.json</include>
 			</includes>
 		</fileSet>
 
@@ -49,6 +62,7 @@
 				<include>**/*.bpmn</include>
 				<include>**/*.bpmn2</include>
 				<include>**/*.xml</include>
+				<include>**/*.wid</include>
 				<include>.gitkeep</include>
 			</includes>
 		</fileSet>
@@ -79,6 +93,8 @@
 			<includes>
 				<include>**/*.properties</include>
 				<include>**/*.xml</include>
+				<include>**/*.scesim</include>
+				<include>**/*.feature</include>
 				<include>.gitkeep</include>
 			</includes>
 		</fileSet>
@@ -95,7 +111,7 @@
 		</requiredProperty>
 
 		<requiredProperty key="groupId">
-			<defaultValue>com.redhat.consulting.ba</defaultValue>
+			<defaultValue>com.ibm.dba.dmoe</defaultValue>
 		</requiredProperty>
 
 		<requiredProperty key="artifactId">
@@ -103,64 +119,59 @@
 		</requiredProperty>
 
 		<requiredProperty key="version">
-			<defaultValue>1.0.0</defaultValue>
+			<defaultValue>1.0.0-SNAPSHOT</defaultValue>
 		</requiredProperty>
 
 		<requiredProperty key="packaging">
 			<defaultValue>jar</defaultValue>
 		</requiredProperty>
 
-		<requiredProperty key="useParent">
+		<requiredProperty key="useCompiledRules">
 			<defaultValue>false</defaultValue>
 		</requiredProperty>
 
-		<requiredProperty key="usesDMN">
+		<requiredProperty key="useDMN">
 			<defaultValue>false</defaultValue>
 		</requiredProperty>
 
-		<requiredProperty key="parentGroupId">
-			<defaultValue>com.redhat.consulting.ba</defaultValue>
+		<requiredProperty key="kjarConfigValidateDMN">
+			<defaultValue>disable</defaultValue>
 		</requiredProperty>
-
-		<requiredProperty key="parentArtifactId">
-			<defaultValue>ba-platform-parent</defaultValue>
-		</requiredProperty>
-
-		<requiredProperty key="parentVersion">
-			<defaultValue>1.0.0</defaultValue>
-		</requiredProperty>
-
+		
 		<requiredProperty key="skipTests">
-			<defaultValue>false</defaultValue>
+			<defaultValue>true</defaultValue>
 		</requiredProperty>
 
-		<!-- Product Properties: Dependency Mapping Found at: https://access.redhat.com/solutions/3405361 -->
-		<requiredProperty key="rhbaPlatformBomVersion">
-			<defaultValue>7.11.0.redhat-00005</defaultValue>
+		<requiredProperty key="dmoeGroupId">
+			<defaultValue>com.redhat.ba</defaultValue>
+		</requiredProperty>
+
+		<requiredProperty key="dmoeArtifactId">
+			<defaultValue>ba-platform-bom</defaultValue>
+		</requiredProperty>
+
+		<requiredProperty key="dmoePlatformBomVersion">
+			<defaultValue>7.13.0.redhat-00005</defaultValue>
 		</requiredProperty>
 
 		<requiredProperty key="kieMavenPluginVersion">
-			<defaultValue>7.52.0.Final-redhat-00007</defaultValue>
+			<defaultValue>7.59.0.Final-redhat-00010</defaultValue>
 		</requiredProperty>
 
 		<requiredProperty key="mavenSurefirePluginVersion">
-			<defaultValue>2.22.2</defaultValue>
+			<defaultValue>3.0.0-M5</defaultValue>
 		</requiredProperty>
 
 		<requiredProperty key="slf4jVersion">
-			<defaultValue>1.7.5</defaultValue>
+			<defaultValue>1.7.32</defaultValue>
+		</requiredProperty>
+
+		<requiredProperty key="logbackVersion">
+			<defaultValue>1.2.10</defaultValue>
 		</requiredProperty>
 
 		<requiredProperty key="junitVersion">
 			<defaultValue>4.13.2</defaultValue>
-		</requiredProperty>
-
-		<requiredProperty key="junitJupiterVersion">
-			<defaultValue>5.8.0-M1</defaultValue>
-		</requiredProperty>
-
-		<requiredProperty key="junitVintageEngineVersion">
-			<defaultValue>5.8.0-M1</defaultValue>
 		</requiredProperty>
 
 		<requiredProperty key="javaVersion">
@@ -171,14 +182,14 @@
 			<defaultValue>3.8.1</defaultValue>
 		</requiredProperty>
 
-		<requiredProperty key="lifecycleMappingVersion">
-			<defaultValue>1.0.0</defaultValue>
+		<requiredProperty key="mavenResourcesPluginVersion">
+			<defaultValue>3.2.0</defaultValue>
 		</requiredProperty>
 
-		<requiredProperty key="cucumberVersion">
-			<defaultValue>6.8.1</defaultValue>
+		<requiredProperty key="mavenShadePluginVersion">
+			<defaultValue>3.2.4</defaultValue>
 		</requiredProperty>
-		
+
 		<!-- KIE Properties -->
 		<requiredProperty key="kieAuditMode">
 			<defaultValue>JPA</defaultValue>
@@ -200,10 +211,6 @@
 			<defaultValue>PER_PROCESS_INSTANCE</defaultValue>
 		</requiredProperty>
 
-		<requiredProperty key="kieCustomTeamRole">
-			<defaultValue>customTeamRole</defaultValue>
-		</requiredProperty>
-
 		<requiredProperty key="kieSecureREST">
 			<defaultValue>false</defaultValue>
 		</requiredProperty>
@@ -216,22 +223,12 @@
 			<defaultValue>false</defaultValue>
 		</requiredProperty>
 
-		<!-- Maven Shade Plugin -->
-		<requiredProperty key="mavenJarPluginVersion">
-			<defaultValue>3.1.0</defaultValue>
+		<requiredProperty key="sourceEncoding">
+			<defaultValue>UTF-8</defaultValue>
 		</requiredProperty>
 
-		<requiredProperty key="mavenShadePluginVersion">
-			<defaultValue>3.2.1</defaultValue>
-		</requiredProperty>
-
-		<!-- Customer Extended Properties -->
-		<requiredProperty key="usesPlatformCommons">
-			<defaultValue>true</defaultValue>
-		</requiredProperty>
-
-		<requiredProperty key="usesProviderDemographicsCommons">
-			<defaultValue>true</defaultValue>
+		<requiredProperty key="outputEncoding">
+			<defaultValue>UTF-8</defaultValue>
 		</requiredProperty>
 	</requiredProperties>
 </archetype-descriptor>
