@@ -2,6 +2,18 @@
 
 This repository contains various tools, scripts, and product extensions useful for managing `IBM Decision Manager Open Edition` projects.
 
+## Tool & Environment Requirements
+
+The following tools are required to be installed on the developer workstation or on the machine performing CI/CD pipeline builds.  Please follow the link in order to download and install the various tools:
+
+1. [**Maven**](https://maven.apache.org) - Required in order to perform Maven builds on the desktop.  
+2. [**Git Client**](https://git-scm.com) - Required in order to clone and make changes to the project GIT repositories
+3. [**JDK 11**](https://www.oracle.com/java/technologies/downloads/) - Requires Java 11 at this time
+4. [**GraalVM (Optional)**](https://www.graalvm.org//) - Required if you want to test NATIVE compilation and deployment
+5. [**VS Code IDE**](https://code.visualstudio.com/download) - An IDE is required, VS Code IDE is the default.  While you can use any IDE you wish, the embeddable editors are only available for VS Code.
+
+*_Once you have installed VS Code, you can go to the Extensions Marketplace and install the `Kogito Bundle` for BPMN, DMN, and Test Scenarios_*.
+
 ## How To Build
 
 This repository is built using `mvn clean install` by either the CI/CD pipeline or on a local developer workstation.  If deploying artifacts to an enterprise Maven repository, please use `mvn clean deploy`, which requires configuration of the `distributionManagement` section of your project's parent pom.xml.
