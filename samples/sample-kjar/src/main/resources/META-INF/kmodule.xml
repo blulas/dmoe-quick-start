@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kmodule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.drools.org/xsd/kmodule">
+    <kbase name="sample-kjar" default="true">
+        <ksession name="sample-kjar-stateless" default="true" type="stateless" />
+        <ksession name="sample-kjar-stateless-debug" default="false" type="stateless">
+            <listeners>
+                <ruleRuntimeEventListener type="com.aop.isb.listeners.WorkingMemoryListener"/>
+                <agendaEventListener type="com.aop.isb.listeners.RuleTraceEventListener"/>
+            </listeners>
+        </ksession>
+    </kbase>
+</kmodule>

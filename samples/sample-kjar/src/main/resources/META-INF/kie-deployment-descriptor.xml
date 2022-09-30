@@ -1,0 +1,49 @@
+<!-- Please note:  The order in which tags show up in this file is extremely important to preserve! -->
+<deployment-descriptor xsi:schemaLocation="http://www.jboss.org/jbpm deployment-descriptor.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <!-- Shared properties for the uber kjar -->
+    <persistence-unit>org.jbpm.domain</persistence-unit>
+    <audit-persistence-unit>org.jbpm.domain</audit-persistence-unit>
+    <audit-mode>JPA</audit-mode>
+    <persistence-mode>JPA</persistence-mode>
+    <runtime-strategy>PER_PROCESS_INSTANCE</runtime-strategy>
+
+    <!-- Shared marshalling strategies -->
+    <marshalling-strategies>
+    </marshalling-strategies>
+
+    <!-- Shared event listeners -->
+    <event-listeners>
+    </event-listeners>
+
+    <!-- Shared task event listeners -->
+    <task-event-listeners>
+    </task-event-listeners>
+
+    <!-- Shared globals -->
+    <globals>
+    </globals>
+
+    <!-- Shared work item handlers -->
+    <work-item-handlers>
+    </work-item-handlers>
+    
+    <!-- Sshared environment entries -->
+    <environment-entries>
+    </environment-entries>
+
+    <!-- Shared configurations -->
+    <configurations>
+    </configurations>
+
+    <!-- This section has been added in order to provide security access control to KIE containers -->
+    <required-roles>
+    </required-roles>
+
+    <!-- Shared remotable classesr -->
+    <remoteable-classes>
+    </remoteable-classes>
+
+    <!-- Additional Shared properties -->
+    <limit-serialization-classes>true</limit-serialization-classes>
+</deployment-descriptor>

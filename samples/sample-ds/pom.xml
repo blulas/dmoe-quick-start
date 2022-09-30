@@ -3,48 +3,48 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<!-- Decision Service -->
-	<groupId>${groupId}</groupId>
-	<artifactId>${artifactId}</artifactId>
-	<version>${version}</version>
-	<packaging>${packaging}</packaging>
-	<name>${projectName}</name>
-	<description>${projectName} - ${projectDescription}</description>
+	<groupId>com.ibm.dba.dmoe</groupId>
+	<artifactId>sample-ds</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>jar</packaging>
+	<name>sample-ds</name>
+	<description>sample-ds - Decision Service</description>
 
 	<!-- Project Properties -->
 	<properties>
 		<!-- General Properties -->
-		<project.build.sourceEncoding>${sourceEncoding}</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>${outputEncoding}</project.reporting.outputEncoding>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<!-- Java Properties -->
-		<java.version>${javaVersion}</java.version>
+		<java.version>11</java.version>
 
 		<!-- Common Maven Plugins -->
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
-		<maven.compiler.plugin.version>${mavenCompilerPluginVersion}</maven.compiler.plugin.version>
+		<maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
 		<maven.compiler.parameters>true</maven.compiler.parameters>
-		<maven.resources.plugin.version>${mavenResourcesPluginVersion}</maven.resources.plugin.version>
-		<maven.shade.plugin.version>${mavenShadePluginVersion}</maven.shade.plugin.version>
-		<maven.surefire.plugin.version>${mavenSurefirePluginVersion}</maven.surefire.plugin.version>
+		<maven.resources.plugin.version>3.2.0</maven.resources.plugin.version>
+		<maven.shade.plugin.version>3.2.4</maven.shade.plugin.version>
+		<maven.surefire.plugin.version>3.0.0-M5</maven.surefire.plugin.version>
 
 		<!-- Quarkus Dependencies -->
-		<quarkus.group.id>${quarkusGroupId}</quarkus.group.id>
-		<quarkus.artifact.id>${quarkusArtifactId}</quarkus.artifact.id>
-		<quarkus.version>${quarkusVersion}</quarkus.version>
+		<quarkus.group.id>io.quarkus.platform</quarkus.group.id>
+		<quarkus.artifact.id>quarkus-bom</quarkus.artifact.id>
+		<quarkus.version>2.10.2.Final</quarkus.version>
 
 		<!-- Kogito Dependencies -->
-		<kogito.group.id>${kogitoGroupId}</kogito.group.id>
-		<kogito.artifact.id>${kogitoArtifactId}</kogito.artifact.id>
-		<kogito.version>${kogitoVersion}</kogito.version>
+		<kogito.group.id>org.kie.kogito</kogito.group.id>
+		<kogito.artifact.id>kogito-quarkus-bom</kogito.artifact.id>
+		<kogito.version>1.24.0.Final</kogito.version>
 
 		<!-- Testing Properties -->
-		<junit.version>${junitVersion}</junit.version>
-		<skipTests>${skipTests}</skipTests>
+		<junit.version>4.13.2</junit.version>
+		<skipTests>true</skipTests>
 
 		<!-- Logging Dependencies -->
-		<slf4j.version>${slf4jVersion}</slf4j.version>
-		<logback.version>${logbackVersion}</logback.version>
+		<slf4j.version>1.7.32</slf4j.version>
+		<logback.version>1.2.10</logback.version>
 	</properties>
 
 	<!-- Enterprise Artifact Repository -->
@@ -108,28 +108,12 @@
 			<artifactId>kogito-quarkus</artifactId>
 		</dependency>
 
-#if (${useDRL} == 'true')
 		<!-- DRL Depencencies -->
 		<dependency>
 			<groupId>org.kie.kogito</groupId>
 			<artifactId>kogito-quarkus-rules</artifactId>
 		</dependency>
 
-#end
-#if (${useDMN} == 'true')
-		<!-- DMN Depencencies -->
-		<dependency>
-			<groupId>org.kie.kogito</groupId>
-			<artifactId>kogito-quarkus-decisions</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.kie.kogito</groupId>
-			<artifactId>kogito-scenario-simulation</artifactId>
-			<scope>test</scope>
-		</dependency>
-
-#end
 		<!-- Testing Depencencies -->
 		<dependency>
 			<groupId>io.quarkus</groupId>
