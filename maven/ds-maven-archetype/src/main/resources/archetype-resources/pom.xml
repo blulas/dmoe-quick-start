@@ -2,27 +2,81 @@
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 
-	<!-- Parent -->
-	<parent>
-		<groupId>${parentGroupId}</groupId>
-		<artifactId>${parentArtifactId}</artifactId>
-		<version>${parentVersion}</version>
-	</parent>
-
 	<!-- Decision Service -->
 	<groupId>${groupId}</groupId>
 	<artifactId>${artifactId}</artifactId>
 	<version>${version}</version>
 	<packaging>${packaging}</packaging>
 	<name>${projectName}</name>
-	<description>${projectDescription}</description>
+	<description>${projectName} - ${projectDescription}</description>
 
 	<!-- Project Properties -->
 	<properties>
+		<!-- General Properties -->
+		<project.build.sourceEncoding>${sourceEncoding}</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>${outputEncoding}</project.reporting.outputEncoding>
+
+		<!-- Java Properties -->
+		<java.version>${javaVersion}</java.version>
+
+		<!-- Common Maven Plugins -->
+		<maven.compiler.source>${java.version}</maven.compiler.source>
+		<maven.compiler.target>${java.version}</maven.compiler.target>
+		<maven.compiler.plugin.version>${mavenCompilerPluginVersion}</maven.compiler.plugin.version>
+		<maven.compiler.parameters>true</maven.compiler.parameters>
+		<maven.resources.plugin.version>${mavenResourcesPluginVersion}</maven.resources.plugin.version>
+		<maven.shade.plugin.version>${mavenShadePluginVersion}</maven.shade.plugin.version>
+		<maven.surefire.plugin.version>${mavenSurefirePluginVersion}</maven.surefire.plugin.version>
+
+		<!-- Quarkus Dependencies -->
+		<quarkus.group.id>${quarkusGroupId}</quarkus.group.id>
+		<quarkus.artifact.id>${quarkusArtifactId}</quarkus.artifact.id>
+		<quarkus.version>${quarkusVersion}</quarkus.version>
+
+		<!-- Kogito Dependencies -->
+		<kogito.group.id>${kogitoGroupId}</kogito.group.id>
+		<kogito.artifact.id>${kogitoArtifactId}</kogito.artifact.id>
+		<kogito.version>${kogitoVersion}</kogito.version>
+
+		<!-- Testing Properties -->
+		<junit.version>${junitVersion}</junit.version>
+		<skipTests>${skipTests}</skipTests>
+
+		<!-- Logging Dependencies -->
+		<slf4j.version>${slf4jVersion}</slf4j.version>
+		<logback.version>${logbackVersion}</logback.version>
 	</properties>
+
+	<!-- Enterprise Artifact Repository -->
+	<distributionManagement>
+	</distributionManagement>
+
+	<!-- Dependency Management -->
+	<dependencyManagement>
+		<dependencies>
+			<!-- Quarkus -->
+			<dependency>
+				<groupId>${quarkus.group.id}</groupId>
+				<artifactId>${quarkus.artifact.id}</artifactId>
+				<version>${quarkus.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<!-- Kogito -->
+			<dependency>
+				<groupId>${kogito.group.id}</groupId>
+				<artifactId>${kogito.artifact.id}</artifactId>
+				<version>${kogito.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<!-- Project Dependencies -->
 	<dependencies>
+		<!-- Quarkus -->
 		<dependency>
 			<groupId>org.kie.kogito</groupId>
 			<artifactId>kogito-quarkus</artifactId>
@@ -46,6 +100,17 @@
 		<dependency>
 			<groupId>io.quarkus</groupId>
 			<artifactId>quarkus-smallrye-openapi</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>io.quarkus</groupId>
+			<artifactId>quarkus-container-image-docker</artifactId>
+		</dependency>
+
+		<!-- Kogito -->
+		<dependency>
+			<groupId>org.kie.kogito</groupId>
+			<artifactId>kogito-quarkus</artifactId>
 		</dependency>
 
 #if (${useDRL} == 'true')
@@ -82,5 +147,110 @@
 			<artifactId>rest-assured</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- Logging -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
+			<version>${logback.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback.version}</version>
+		</dependency>
+
+		<!-- Testing -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
+
+	<!-- Build Management -->
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>${quarkus.group.id}</groupId>
+				<artifactId>quarkus-maven-plugin</artifactId>
+				<version>${quarkus.version}</version>
+				<extensions>true</extensions>
+					<executions>
+						<execution>
+							<goals>
+								<goal>build</goal>
+								<goal>generate-code</goal>
+								<goal>generate-code-tests</goal>
+							</goals>
+						</execution>
+					</executions>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven.compiler.plugin.version}</version>
+				<configuration>
+					<parameters>${maven.compiler.parameters}</parameters>
+				</configuration>
+			</plugin>
+			
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${maven.surefire.plugin.version}</version>
+				<configuration>
+					<systemPropertyVariables>
+						<java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
+						<maven.home>${maven.home}</maven.home>
+					</systemPropertyVariables>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<!-- Build Profiles -->
+	<profiles>
+		<profile>
+			<id>native</id>
+			<activation>
+				<property>
+					<name>native</name>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-failsafe-plugin</artifactId>
+						<version>${maven.surefire.plugin.version}</version>
+						<executions>
+							<execution>
+								<goals>
+									<goal>integration-test</goal>
+									<goal>verify</goal>
+								</goals>
+								<configuration>
+									<systemPropertyVariables>
+										<native.image.path>${project.build.directory}/${project.build.finalName}-runner</native.image.path>
+										<java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
+										<maven.home>${maven.home}</maven.home>
+									</systemPropertyVariables>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>			
+			<properties>
+				<quarkus.package.type>native</quarkus.package.type>
+			</properties>
+		</profile>
+	</profiles>
 </project>

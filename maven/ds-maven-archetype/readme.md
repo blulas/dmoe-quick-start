@@ -16,7 +16,7 @@ In order to create a decision service project using the archetype, the archetype
 
 Upon successful execution of the `ds-maven-archetype`, a directory will be created for your project containg the Maven project struture for the decision service.  All standard Maven commands can now be used in order to build, deploy, and test the decision service.
 
-**_Note_**: There may be certain scenarios where the Git ignore file (_.gitignore_) may not be generated for the new KJAR project.  This is due to a bug in Maven's archetype genearation code.  In the event of this, please add the `.gitignore` file manually to the decision service's root folder.
+**_Note_**: There may be certain scenarios where the Git ignore file (_.gitignore_) may not be generated for the new JAR project.  This is due to a bug in Maven's archetype genearation code.  In the event of this, please add the `.gitignore` file manually to the decision service's root folder.
 
 ## Building the Decision Service Project
 
@@ -30,7 +30,7 @@ This custom Maven archetype can be run from the developer workstation, build ser
 
 Once the archetype has been built and installed into the enterprise artifact repository, navigate to the project folder for which you would like to create the new project, and run the following command (replacing the properties with the appropriate project value):
 
-`mvn archetype:generate -B -DarchetypeGroupId=com.highmark.ba -DarchetypeArtifactId=ds-maven-archetype -DarchetypeVersion=1.0.0-SNAPSHOT< -DprojectName=<project name> -DartifactId=<project artifact id>`
+`mvn archetype:generate -B -DarchetypeGroupId=com.ibm.dba.dmoe.maven -DarchetypeArtifactId=ds-maven-archetype -DarchetypeVersion=1.0.0-SNAPSHOT< -DprojectName=<project name> -DartifactId=<project artifact id>`
 
 ### Archetype Parameters
 
@@ -44,24 +44,23 @@ The command above represents the minimal set of properties for the archetype. Th
 | archetypeVersion | String | Version number for the archetype | None | Yes |
 | projectName | String | Project name (becomes decision service name) | untitled | No |
 | projectDescription | String | Project description | Decision Service Project | No |
-| groupId | String | Maven groupId for generated project | com.highmark.ba | No |
+| groupId | String | Maven groupId for generated project | com.ibm.dba.dmoe | No |
 | artifactId | String | Maven artifactId for generated project | untitled | No |
 | version | String | Maven version for generated project | 1.0.0-SNAPSHOT | No |
-| parentGroupId | String | Maven parent groupId for generated project | com.highmark.ba | No |
-| parentArtifactId | String | Maven parent artifactId for generated project | ba-platform-parent | No |
-| parentVersion | String | Maven parent version for generated project | 1.0.0-SNAPSHOT | No |
 | packaging | String | Maven build package target | jar | No |
-| quarkusVersion | String | Version of Quarkus being used by Kogito | 2.2.3.Final-redhat-00013 | No |
-| kogitoVersion | String | Version of Kogito | 1.17.0.Final | No |
+| quarkusVersion | String | Version of Quarkus being used by Kogito | 2.10.2.Final | No |
+| kogitoVersion | String | Version of Kogito | 1.24.0.Final | No |
+| skipTests | Boolean | Skip the Maven test goal? | true | No |
+| useDRL | Boolean | Include DRL dependencies? | true | No |
+| useDMN | Boolean | Include DMN dependencies? | false | No |
 
 **Note:** *The parameters of this archetype are meant to be extended as the organization adds more sharable dependencies, so please be sure to update these properties, the archetype, and this documentation!*
 
 ## Additional Information (*Appendicies*)
-This repository is focused on business automation using **Red Hat’s Business Automation** products, which in turn rely on various open source tools and technology. The following online documentation is available in order to learn various aspects of these tools:
+This repository is focused on business automation using the **IBM Decison Manager Open Edition** product, which in turn relies on various open source tools and technology. The following online documentation is available in order to learn various aspects of these tools:
 
-- [**Apache Maven**](https://maven.apache.org/) is a free and open source software project management and comprehension tool. Based on
-  the concept of a project object model (POM), Maven can manage a project’s build, reporting and documentation from a central piece of
-  information. A **getting started guide** is available [here](http://maven.apache.org/guides/getting-started/).
-- [**Git**](https://git-scm.com//) is a free and open source distributed version control system designed to handle everything
-  from small to very large projects with speed and efficiency. There is a **handbook** available [here](https://guides.github.com/introduction/git-handbook/), as well as various **guides** for learning and working with Git available [here](https://guides.github.com/
-- [**Quarkus**](https://https://quarkus.io/) was created to enable Java developers to create applications for a modern, cloud-native world. Quarkus is a Kubernetes-native Java framework tailored for GraalVM and HotSpot, crafted from best-of-breed Java libraries and standards. The goal is to make Java the leading platform in Kubernetes and serverless environments while offering developers a framework to address a wider range of distributed application architectures.
+- [**Apache Maven**](https://maven.apache.org/) is a free and open source software project management and comprehension tool. Based on the concept of a project object model (POM), Maven can manage a project’s build, reporting and documentation from a central piece of  information. A **getting started guide** is available [here](http://maven.apache.org/guides/getting-started/).
+- [**Git**](https://git-scm.com//) is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency. There is a **handbook** available [here](https://guides.github.com/introduction/git-handbook/), as well as various **guides** for learning and working with Git available [here](https://guides.github.com/
+- [**Quarkus**](https://quarkus.io) Quarkus was created to enable Java developers to create applications for a modern, cloud-native world. Quarkus is a Kubernetes-native Java framework tailored for GraalVM and HotSpot, crafted from best-of-breed Java libraries and standards. The goal is to make Java the leading platform in Kubernetes and serverless environments while offering developers a framework to address a wider range of distributed application architectures.
+- [**Kogito**](https://kogito.kie.org) Kogito is designed from ground up to run at scale on cloud infrastructure. If you think about business automation think about the cloud as this is where your business logic lives these days. By taking advantage of the latest technologies (Quarkus, knative, etc.), you get amazingly fast boot times and instant scaling on orchestration platforms like Kubernetes.
+- [**IBM Business Automation Manager Open Edition**](https://www.ibm.com/docs/en/ibamoe?topic=getting-started-business-automation-manager-open-editions) IBM Business Automation Manager Open Editions, which consists of IBM Process Automation Manager and IBM Decision Manager Open Edition, offer developers the ability to build cloud-native applications that automate business operations. IBM Process Automation Manager Open Edition is a platform for developing containerized microservices and applications that automate processes and business decisions. IBM Decision Manager Open Edition, a subset of Process Automation Manager Open Edition, is a separately available platform for developing containerized microservices and applications that automate business decisions, including complex event processing.

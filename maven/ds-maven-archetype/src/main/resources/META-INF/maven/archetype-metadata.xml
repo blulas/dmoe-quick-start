@@ -5,30 +5,17 @@
 		<fileSet filtered="true" packaged="false" encoding="UTF-8">
 			<directory></directory>
 			<includes>
-				<include>project.imports</include>
-				<include>package-names-white-list</include>
-				<include>project.repositories</include>
+                <include>.gitignore</include>
 				<include>readme.md</include>
 				<include>pom.xml</include>
 			</includes>
 		</fileSet>
 
-		<fileSet filtered="false" packaged="false" encoding="UTF-8">
+		<!-- Add the .gitignore file -->
+		<fileSet filtered="true" packaged="false" encoding="UTF-8">
 			<directory>./</directory>
 			<includes>
                 <include>.gitignore</include>
-			</includes>
-		</fileSet>
-
-		<!-- This folder contains the global files for the project -->
-		<fileSet filtered="true" packaged="false" encoding="UTF-8">
-			<directory>global</directory>
-			<includes>
-				<include>**/*.json</include>
-				<include>**/*.png</include>
-				<include>**/*.gif</include>
-				<include>**/*.wid</include>
-				<include>**/*.json</include>
 			</includes>
 		</fileSet>
 
@@ -51,29 +38,6 @@
 				<include>**/*.drl</include>
 				<include>**/*.dmn</include>
 				<include>**/*.scesim</include>
-				<include>**/*.xml</include>
-				<include>.gitkeep</include>
-			</includes>
-		</fileSet>
-
-		<fileSet filtered="true" packaged="false" encoding="UTF-8">
-			<directory>src/main/resources/processes</directory>
-			<includes>
-				<include>**/*.properties</include>
-				<include>**/*.bpmn</include>
-				<include>**/*.bpmn2</include>
-				<include>**/*.xml</include>
-				<include>**/*.wid</include>
-				<include>.gitkeep</include>
-			</includes>
-		</fileSet>
-
-		<fileSet filtered="true" packaged="false" encoding="UTF-8">
-			<directory>src/main/resources/rules</directory>
-			<includes>
-				<include>**/*.properties</include>
-				<include>**/*.drl</include>
-				<include>**/*.dmn</include>
 				<include>**/*.xml</include>
 				<include>.gitkeep</include>
 			</includes>
@@ -120,11 +84,11 @@
 		</requiredProperty>
 
 		<requiredProperty key="projectDescription">
-			<defaultValue>Syngenta Decision Service</defaultValue>
+			<defaultValue>Decision Service</defaultValue>
 		</requiredProperty>
 
 		<requiredProperty key="groupId">
-			<defaultValue>com.syngenta.ba</defaultValue>
+			<defaultValue>com.ibm.dba.dmoe</defaultValue>
 		</requiredProperty>
 
 		<requiredProperty key="artifactId">
@@ -132,18 +96,6 @@
 		</requiredProperty>
 
 		<requiredProperty key="version">
-			<defaultValue>1.0.0-SNAPSHOT</defaultValue>
-		</requiredProperty>
-
-		<requiredProperty key="parentGroupId">
-			<defaultValue>com.syngenta.ba</defaultValue>
-		</requiredProperty>
-
-		<requiredProperty key="parentArtifactId">
-			<defaultValue>ba-platform-parent</defaultValue>
-		</requiredProperty>
-
-		<requiredProperty key="parentVersion">
 			<defaultValue>1.0.0-SNAPSHOT</defaultValue>
 		</requiredProperty>
 
@@ -156,7 +108,7 @@
 		</requiredProperty>
 
 		<requiredProperty key="useDRL">
-			<defaultValue>false</defaultValue>
+			<defaultValue>true</defaultValue>
 		</requiredProperty>
 
 		<requiredProperty key="skipTests">
@@ -173,11 +125,11 @@
 		</requiredProperty>
 
 		<requiredProperty key="quarkusVersion">
-			<defaultValue>2.7.2.Final</defaultValue>
+			<defaultValue>2.10.2.Final</defaultValue>
 		</requiredProperty>
 
 		<requiredProperty key="quarkusPort">
-			<defaultValue>8081</defaultValue>
+			<defaultValue>8080</defaultValue>
 		</requiredProperty>
 
 		<requiredProperty key="kogitoGroupId">
@@ -189,7 +141,7 @@
 		</requiredProperty>
 
 		<requiredProperty key="kogitoVersion">
-			<defaultValue>1.17.0.Final</defaultValue>
+			<defaultValue>1.24.0.Final</defaultValue>
 		</requiredProperty>
 
 		<requiredProperty key="mavenSurefirePluginVersion">
@@ -222,6 +174,14 @@
 
 		<requiredProperty key="mavenShadePluginVersion">
 			<defaultValue>3.2.4</defaultValue>
+		</requiredProperty>
+
+		<requiredProperty key="sourceEncoding">
+			<defaultValue>UTF-8</defaultValue>
+		</requiredProperty>
+
+		<requiredProperty key="outputEncoding">
+			<defaultValue>UTF-8</defaultValue>
 		</requiredProperty>
 	</requiredProperties>
 </archetype-descriptor>
