@@ -5,6 +5,7 @@
 		<fileSet filtered="true" packaged="false" encoding="UTF-8">
 			<directory></directory>
 			<includes>
+				<include>.gitignore</include>
 				<include>project.imports</include>
 				<include>package-names-white-list</include>
 				<include>project.repositories</include>
@@ -13,10 +14,11 @@
 			</includes>
 		</fileSet>
 
-		<fileSet filtered="false" packaged="false" encoding="UTF-8">
+		<!-- Add the .gitignore file -->
+		<fileSet filtered="true" packaged="false" encoding="UTF-8">
 			<directory>./</directory>
 			<includes>
-                <include>.gitignore</include>
+				<include>.gitignore</include>
 			</includes>
 		</fileSet>
 
@@ -108,11 +110,11 @@
 		</requiredProperty>
 
 		<requiredProperty key="projectDescription">
-			<defaultValue>Syngenta KJAR Project</defaultValue>
+			<defaultValue>KJAR Project</defaultValue>
 		</requiredProperty>
 
 		<requiredProperty key="groupId">
-			<defaultValue>com.syngenta.ba</defaultValue>
+			<defaultValue>com.ibm.dba.dmoe</defaultValue>
 		</requiredProperty>
 
 		<requiredProperty key="artifactId">
@@ -120,18 +122,6 @@
 		</requiredProperty>
 
 		<requiredProperty key="version">
-			<defaultValue>1.0.0-SNAPSHOT</defaultValue>
-		</requiredProperty>
-
-		<requiredProperty key="parentGroupId">
-			<defaultValue>com.syngenta.ba</defaultValue>
-		</requiredProperty>
-
-		<requiredProperty key="parentArtifactId">
-			<defaultValue>ba-platform-parent</defaultValue>
-		</requiredProperty>
-
-		<requiredProperty key="parentVersion">
 			<defaultValue>1.0.0-SNAPSHOT</defaultValue>
 		</requiredProperty>
 
@@ -155,13 +145,20 @@
 			<defaultValue>true</defaultValue>
 		</requiredProperty>
 
-		<!-- Product Properties: Dependency Mapping Found at: https://access.redhat.com/solutions/3405361 -->
-		<requiredProperty key="rhbaPlatformBomVersion">
-			<defaultValue>7.12.0.redhat-00008</defaultValue>
+		<requiredProperty key="dmoeGroupId">
+			<defaultValue>com.redhat.ba</defaultValue>
+		</requiredProperty>
+
+		<requiredProperty key="dmoeArtifactId">
+			<defaultValue>ba-platform-bom</defaultValue>
+		</requiredProperty>
+
+		<requiredProperty key="dmoePlatformBomVersion">
+			<defaultValue>7.13.0.redhat-00005</defaultValue>
 		</requiredProperty>
 
 		<requiredProperty key="kieMavenPluginVersion">
-			<defaultValue>7.59.0.Final-redhat-00006</defaultValue>
+			<defaultValue>7.59.0.Final-redhat-00010</defaultValue>
 		</requiredProperty>
 
 		<requiredProperty key="mavenSurefirePluginVersion">
@@ -227,6 +224,14 @@
 
 		<requiredProperty key="usesCustomMarshalling">
 			<defaultValue>false</defaultValue>
+		</requiredProperty>
+
+		<requiredProperty key="sourceEncoding">
+			<defaultValue>UTF-8</defaultValue>
+		</requiredProperty>
+
+		<requiredProperty key="outputEncoding">
+			<defaultValue>UTF-8</defaultValue>
 		</requiredProperty>
 	</requiredProperties>
 </archetype-descriptor>

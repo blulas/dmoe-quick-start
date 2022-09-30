@@ -6,7 +6,7 @@ This repository contains a custom [**Maven archetype**](https://maven.apache.org
 
 In short, Archetype is a Maven project template generation toolkit. An archetype is defined as an original pattern or model from which all other things of the same kind are made. The name fits as we are trying to provide a system that provides a consistent means of generating Maven projects, specifically, Kogitio Decision Service projects. The archetype will help authors create Maven project templates for users, and provides users with the means to generate parameterized versions of those project templates.
 
-The `Decision Service Maven Archetype` produces a standard Kogito decision service project structure, complete with a properly configured project `pom.xml` as well as including all of the core dependencies and build targets for a project using these types of artifacts.  An assumption is made that there is already a proper parent pom.xml to inherit from.
+The `Decision Service Maven Archetype` produces a standard Kogito decision service project structure, complete with a properly configured project `pom.xml` as well as including all of the core dependencies and build targets for a project using these types of artifacts.  
 
 ## Getting Started
 
@@ -24,7 +24,7 @@ In order to build the project you must run the following command `mvn clean depl
 
 ## Using the Archetype
 
-This custom Maven archetype can be run from the developer workstation, build server, or any other environment where a command line tool can be used, assuming that environment has access to the enterprise Maven repository for which the archetype has been installed or deployed. Once installed into Maven, the archetype can be run either via the command line or directly in Business Central.
+This custom Maven archetype can be run from the developer workstation, build server, or any other environment where a command line tool can be used, assuming that environment has access to the enterprise Maven repository for which the archetype has been installed or deployed. Once installed into Maven, the archetype can be run via the command line.
 
 ### Using the Archetype from the Command Line
 

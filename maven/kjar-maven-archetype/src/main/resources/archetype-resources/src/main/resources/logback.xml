@@ -5,9 +5,6 @@
 		</encoder>
 	</appender>
 
-	<!-- UHC Application Packages - Logging Configuration -->
-	<logger name="com.aop.isb.listeners" level="debug" /> 
-
 	<!-- Drools (Red Hat) Packages - Logging Configuration -->
 	<logger name="logging.level.org.drools.core.xml"  				level="error" /> 
 	<logger name="org.drools.compiler.kie.builder.impl"				level="error" /> 

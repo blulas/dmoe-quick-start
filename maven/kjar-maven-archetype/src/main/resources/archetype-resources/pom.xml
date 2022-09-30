@@ -8,13 +8,13 @@
 	<version>${version}</version>
 	<packaging>${packaging}</packaging>
 	<name>${projectName}</name>
-	<description>${projectDescription}</description>
+	<description>${projectName} - ${projectDescription}</description>
 
 	<!-- Project Properties -->
 	<properties>
 		<!-- General Properties -->
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<project.build.sourceEncoding>${sourceEncoding}</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>${outputEncoding}</project.reporting.outputEncoding>
 
 		<!-- Java Properties -->
 		<java.version>${javaVersion}</java.version>
@@ -27,9 +27,8 @@
 		<maven-shade-plugin.version>${mavenShadePluginVersion}</maven-shade-plugin.version>
 		<maven-surefire-plugin.version>${mavenSurefirePluginVersion}</maven-surefire-plugin.version>
 
-		<!-- Red Hat Business Automation -->
-		<!-- Dependency Mapping Found at: https://access.redhat.com/solutions/3405361 -->
-		<rhba.platform.bom.version>${rhbaPlatformBomVersion}</rhba.platform.bom.version>
+		<!-- Decision Manager Open Edition (legacy) -->
+		<dmoe.platform.bom.version>${dmoePlatformBomVersion}</dmoe.platform.bom.version>
 		<kie-maven-plugin.version>${kieMavenPluginVersion}</kie-maven-plugin.version>
 
 		<!-- Testing Properties -->
@@ -51,11 +50,11 @@
 	<!-- Dependency Management -->
 	<dependencyManagement>
 		<dependencies>
-			<!-- RedHat Business Automation Dependencies -->
+			<!-- Decision Manager Open Edition Maven Dependencies -->
 			<dependency>
-				<groupId>com.redhat.ba</groupId>
-				<artifactId>ba-platform-bom</artifactId>
-				<version>${rhba.platform.bom.version}</version>
+				<groupId>${dmoeGroupId}</groupId>
+				<artifactId>${dmoeArtifactId}</artifactId>
+				<version>${dmoe.platform.bom.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -64,26 +63,7 @@
 
 	<!-- Project Dependencies -->
 	<dependencies>
-		<!-- Logging Dependencies -->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>${slf4j.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-core</artifactId>
-			<version>${logback.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
-			<version>${logback.version}</version>
-		</dependency>
-
-		<!-- Business Automation Depencencies -->
+		<!-- Decision Manager Open Edition Legacy Dependencies -->
 		<dependency>
 			<groupId>org.kie</groupId>
 			<artifactId>kie-api</artifactId>
@@ -181,6 +161,25 @@
 			<groupId>org.drools</groupId>
 			<artifactId>drools-scenario-simulation-backend</artifactId>
 			<scope>test</scope>
+		</dependency>
+
+		<!-- Logging Dependencies -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
+			<version>${logback.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback.version}</version>
 		</dependency>
 	</dependencies>
 
