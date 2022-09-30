@@ -13,6 +13,7 @@ This repository is organized in a series of modules:
 1.  [**Adaptors**](./adaptors/readme.md) - A set of legacy adaptors and product extensions used to augment the functionality of the legacy aspects of IBM Decision Manager Open Edition.  
 2.  [**Maven**](./maven/readme.md) - A set of Maven extensions, such as custom archetypes and plugins, used to augment the functionality of IBM Decision Manager Open Edition.
 3.  [**Scripts**](./scripts/readme.md) - A set of scripts useful for using various adaptors and maven extensions.
+4.  [**Samples**](./samples/readme.md) - A set of sample applications generated using this kick-start repository.
 
 ## Additional Information (*Appendicies*)
 This repository is focused on business automation using the **IBM Decison Manager Open Edition** product, which in turn relies on various open source tools and technology. The following online documentation is available in order to learn various aspects of these tools:
